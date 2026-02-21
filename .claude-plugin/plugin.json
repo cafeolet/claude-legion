@@ -1,0 +1,12 @@
+{
+  "name": "claude-legion",
+  "version": "1.0.0",
+  "description": "Agentic coding ecosystem — 8 specialized agents modeled after Roman legion ranks, forming a self-orchestrating coding team.",
+  "author": {
+    "name": "cafeolet",
+    "url": "https://github.com/cafeolet"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/cafeolet/claude-legion",
+  "keywords": ["agents", "orchestration", "multi-agent", "legion"]
+}

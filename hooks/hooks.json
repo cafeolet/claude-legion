@@ -1,0 +1,56 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/session-init.sh"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "centurion",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "A Centurion implementation agent just completed its task. You MUST now spawn Vigil to verify the implementation before reporting results to the user. Respond with JSON: {\"ok\": true, \"reason\": \"[Legion] Centurion complete — spawning Vigil for verification.\"}"
+          }
+        ]
+      },
+      {
+        "matcher": "vigil",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "mkdir -p ${HOME}/.claude-legion && touch ${HOME}/.claude-legion/vigil-ran"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/track-changes.sh",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/stop-check.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
