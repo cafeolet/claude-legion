@@ -1,0 +1,11 @@
+{
+  "name": "claude-legion",
+  "description": "Claude Legion — 8 specialized AI agents forming a self-orchestrating coding team.",
+  "plugins": [
+    {
+      "name": "claude-legion",
+      "description": "Agentic coding ecosystem — 8 specialized agents modeled after Roman legion ranks, forming a self-orchestrating coding team.",
+      "path": "."
+    }
+  ]
+}

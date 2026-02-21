@@ -81,11 +81,22 @@ Independent agents always run concurrently. Up to 7 specialists at once.
 - **Bash** and standard POSIX tools (`awk`, `grep`, `sed`, `sort`, `wc`)
 - **`jq`** recommended — enables robust JSON parsing in hook scripts (falls back to regex without it)
 
-### Install from GitHub
+### Install
 
 ```bash
-claude plugin install --from https://github.com/cafeolet/claude-legion
+# Add the marketplace and install the plugin
+/plugin marketplace add cafeolet/claude-legion
+/plugin install claude-legion@claude-legion
 ```
+
+Or from the CLI:
+
+```bash
+claude plugin marketplace add cafeolet/claude-legion
+claude plugin install claude-legion@claude-legion
+```
+
+Restart Claude Code. You should see `[Legion Activated] Legatus is online.`
 
 ### Or clone for development
 
@@ -94,10 +105,7 @@ git clone https://github.com/cafeolet/claude-legion.git
 cd claude-legion
 chmod +x scripts/*.sh
 
-# Validate the plugin structure
-claude plugin validate ~/code/claude-legion
-
-# Load the plugin for a session
+# Load the plugin directly for a session
 claude --plugin-dir ~/code/claude-legion
 ```
 
@@ -215,8 +223,16 @@ For complex multi-file tasks, Centurion uses `isolation: "worktree"` to work in 
 
 ### Quick Install
 
+In a Claude Code session:
+```
+/plugin marketplace add cafeolet/claude-legion
+/plugin install claude-legion@claude-legion
+```
+
+Or from the CLI:
 ```bash
-claude plugin install --from https://github.com/cafeolet/claude-legion
+claude plugin marketplace add cafeolet/claude-legion
+claude plugin install claude-legion@claude-legion
 ```
 
 Then restart Claude Code. You should see `[Legion Activated] Legatus is online.` on session start.
@@ -224,12 +240,16 @@ Then restart Claude Code. You should see `[Legion Activated] Legatus is online.`
 ### Step-by-Step
 
 1. **Check prerequisites** — Claude Code v1.0.33 or later must be installed. `jq` is recommended but not required.
-2. **Install the plugin:**
+2. **Add the marketplace:**
    ```bash
-   claude plugin install --from https://github.com/cafeolet/claude-legion
+   claude plugin marketplace add cafeolet/claude-legion
    ```
-3. **Restart Claude Code** to load the plugin.
-4. **Verify** — run `/agents` in a Claude Code session. You should see all 8 agents: `legatus`, `quaestor`, `tribunus`, `praetor`, `centurion`, `vigil`, `augur`, `scriba`.
+3. **Install the plugin:**
+   ```bash
+   claude plugin install claude-legion@claude-legion
+   ```
+4. **Restart Claude Code** to load the plugin.
+5. **Verify** — run `/agents` in a Claude Code session. You should see all 8 agents: `legatus`, `quaestor`, `tribunus`, `praetor`, `centurion`, `vigil`, `augur`, `scriba`.
 
 ### What Gets Installed
 
