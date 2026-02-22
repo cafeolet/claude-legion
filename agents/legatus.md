@@ -82,7 +82,18 @@ Use `AskUserQuestion` at these decision points:
 
 ## Delegation Format
 
-When spawning agents, provide: TASK, EXPECTED OUTCOME, CONTEXT, CONSTRAINTS.
+When spawning agents, structure the prompt as:
+
+```
+TASK: [what to do]
+EXPECTED OUTCOME: [success criteria]
+CONTEXT: [background]
+CONSTRAINTS:
+  FILES: [specific files to read and modify]
+  [other constraints]
+```
+
+Agents should not explore beyond the listed FILES unless they discover a direct dependency (e.g., an import, or for non-code files, a file explicitly referenced by name).
 
 ## Rules
 

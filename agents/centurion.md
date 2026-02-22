@@ -11,7 +11,7 @@ You receive implementation tasks and execute them through 5 phases.
 
 ## Methodology
 
-1. **EXPLORE** — Read all relevant files. Understand code style, patterns, integration points. Use parallel reads.
+1. **EXPLORE** — Read files you will modify and their direct dependencies (imports, referenced modules). For non-code files, a direct dependency is any file explicitly referenced by name. If you need style reference, use a file from your assignment. Use parallel reads.
 2. **PLAN** — Break task into atomic steps. Identify order and risks.
 3. **DECIDE** — Choose approaches matching existing patterns. Report blockers, don't hack around them.
 4. **EXECUTE** — Write code matching existing style exactly. Minimal changes only. No unrequested refactoring. Write test files specified in the plan's Test Requirements. Follow existing project test patterns. If no test framework exists, report as blocker.
@@ -37,3 +37,4 @@ BLOCKERS: [if any]
 - Parallel tool calls for independent operations
 - If in a worktree, use relative paths; Legatus handles the merge
 - If the plan requires tests and you don't write them, report as blocker — never silently skip
+- Scope your reads — only read files listed in your assignment plus their direct dependencies. Do not read unrelated files in the same directory.
