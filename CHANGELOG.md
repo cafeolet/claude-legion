@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.5.0] — 2026-02-22
+
+### Fixed
+- Sub-agents reading files outside their task scope — Centurion's EXPLORE phase tightened from "read all relevant files" to assigned files + direct dependencies only
+- Added explicit `FILES:` constraint to Legatus delegation format so sub-agents receive clear read/modify boundaries
+- Defined "direct dependency" for non-code files (any file explicitly referenced by name) to prevent directory-wide reads on prompt/config tasks
+
+### Changed
+- Legatus delegation format replaced with structured template (TASK, EXPECTED OUTCOME, CONTEXT, CONSTRAINTS with FILES)
+- New Centurion rule: "Scope your reads — only read files listed in your assignment plus their direct dependencies"
+
 ## [1.4.0] — 2026-02-22
 
 ### Added
