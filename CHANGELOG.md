@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.0.0] — 2026-02-22
+
+### Added — Prompt Fortress Upgrade
+- **Orchestrator hard blocks** — Legatus can no longer edit source files directly. FORBIDDEN/ALLOWED action lists enforced.
+- **Pre-delegation protocol** — Mandatory DELEGATION REASONING block before every Task() call (task, agent, acceptance criteria, skills, risk)
+- **Single-task discipline** — Centurion refuses multi-task assignments. One concern, one scope, one verification.
+- **Evidence requirements** — Every claim must cite a tool call result. "If you cannot prove it, you did not do it."
+- **4-phase paranoid verification** — Vigil now assumes subagents are lying. READ CODE → AUTOMATED CHECKS → HANDS-ON QA → GATE DECISION
+- **Wisdom accumulation (Scrolls)** — `.legion/scrolls/` for project-global knowledge hubs. Centurion writes learnings, Legatus orchestrates.
+- **Gap Check** — Mandatory section in Tribunus plans (5 questions). Praetor rejects plans with missing or hollow gap checks.
+- **3-strike failure recovery** — Centurion: STOP → REVERT → DOCUMENT → ESCALATE after 3 failed attempts
+- **Skill discovery** — Agents check available skills and Context7 before inventing. Legatus suggests `npx skills find` for uncovered domains.
+- **Communication hardening** — No acknowledgments, flattery, narration. Actions + results only. Applied to Legatus, Centurion, Vigil, Tribunus, Praetor (research agents exempt).
+- **Anti-pattern guard** — Centurion greps changes for `as any`, `@ts-ignore`, empty catch blocks, `console.log`, TODO/FIXME before completing
+- **Agent wait enforcement** — Maximum enforcement: NEVER proceed with incomplete agent results, NEVER duplicate delegated work, NEVER "I have enough context". N agents = N TaskOutput calls.
+
+### Changed
+- Vigil verification protocol fully rewritten (old 4-check system replaced with 4-phase paranoid protocol)
+- Red Flags tables expanded in both `legatus.md` and `using-legion/SKILL.md` (+5 new anti-patterns each)
+- `using-legion` skill updated with condensed Prompt Fortress protocols
+
 ## [1.8.0] — 2026-02-22
 
 ### Changed

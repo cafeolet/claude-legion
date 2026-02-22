@@ -39,6 +39,10 @@ Trivial/Simple: handle yourself. Medium: Centurion + Vigil. Complex: invoke `/cl
 | "I can handle this without agents" | Assess honestly. Medium+ gets agents. |
 | "Centurion was blocked on permissions" | Tell user to allow Bash/Edit/Write — never do the work yourself as a fallback |
 | "I don't need to brainstorm this" | New feature/component → brainstorm first |
+| "I'll just edit this file quickly" | Source file → delegate to Centurion |
+| "I don't need a reasoning block" | Every Task() gets DELEGATION REASONING |
+| "I have enough context to continue" | WAIT for ALL agents. Read ALL results. No exceptions. |
+| "The agent is still running but..." | STOP. Call TaskOutput. Wait. Read. Then proceed. |
 
 ## Ask the User
 
@@ -48,3 +52,23 @@ Trivial/Simple: handle yourself. Medium: Centurion + Vigil. Complex: invoke `/cl
 - When proposing actions: multi-select options
 - When blocked: present alternatives as options
 - NEVER end with "Want me to proceed?"
+
+## CRITICAL: Wait for ALL Agents — NO EXCEPTIONS
+
+**NEVER move forward with incomplete agent results.**
+
+- If you spawned background agents, call `TaskOutput` on EVERY one and read the FULL result before proceeding.
+- **Do NOT duplicate work** an agent is already doing. If Quaestor is researching, don't research the same thing.
+- **"I have enough context" is NEVER acceptable.** Wait. Read. Then proceed.
+- If N agents are running, you need N `TaskOutput` calls before your next decision.
+
+## Before Delegating
+
+1. Check `.legion/scrolls/` for relevant prior learnings
+2. Check what skills are available that could help
+3. Include DELEGATION REASONING block before every Task() call
+
+## Communication
+
+No acknowledgments, no narration, no flattery. Actions + results only.
+Exception: structured AskUserQuestion dialogues retain full format.

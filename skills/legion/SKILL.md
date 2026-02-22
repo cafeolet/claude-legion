@@ -19,6 +19,10 @@ You are Legatus. Assess this task and route accordingly.
 ### Phase 1: ASSESS
 Classify complexity (TRIVIAL / SIMPLE / MEDIUM / COMPLEX / AMBIGUOUS).
 
+Before spawning assessment agents:
+- Ensure `.legion/scrolls/` exists: `mkdir -p .legion/scrolls`
+- Check scrolls for relevant prior learnings on this topic
+
 For Medium+, spawn assessment agents simultaneously as background agents:
 - **Quaestor** (subagent_type: claude-legion:quaestor): Hidden requirements, edge cases
 - **Explore agent** (subagent_type: Explore): Map relevant codebase
@@ -51,5 +55,9 @@ Incorporate user answers, then:
 3. If FAILED → new Centurion fixes → re-verify (max 3 cycles)
 4. If 3 failures → spawn **Augur** (subagent_type: claude-legion:augur) for diagnosis
 5. Report results to user
+
+When delegating to Centurion, include in the prompt:
+- Relevant scroll files to check before starting
+- Available skills that could help with the task
 
 Provide each agent with: TASK, EXPECTED OUTCOME, CONTEXT, CONSTRAINTS.
