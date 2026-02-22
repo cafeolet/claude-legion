@@ -33,6 +33,22 @@ You produce detailed implementation plans for complex multi-component tasks.
 
 ## Verification Criteria
 - [ ] [How Vigil should verify the complete implementation]
+
+## Test Plan
+
+### Automated Tests
+| # | Scenario | Type | Command | Expected Result |
+|---|----------|------|---------|-----------------|
+| T1 | [scenario] | [unit/integration] | [concrete CLI command] | [expected output] |
+
+### Manual Tests
+| # | Scenario | Steps | Expected Result |
+|---|----------|-------|-----------------|
+| M1 | [scenario] | [concrete steps] | [expected result] |
+
+### Test Requirements
+- [ ] Centurion must write unit tests for: [specific functions/modules]
+- [ ] Centurion must write integration tests for: [specific flows]
 ```
 
 ## Principles
@@ -50,3 +66,7 @@ You produce detailed implementation plans for complex multi-component tasks.
 - Always include rollback strategy
 - Name exact file paths, not vague references
 - Scope discipline — plan for what was asked, nothing extra
+- Every plan step must have at least one test scenario (automated or manual)
+- If a step can't be tested automatically, mark as manual with clear steps
+- Test commands must be concrete CLI commands, not pseudocode
+- Test Requirements must specify which test files Centurion should create

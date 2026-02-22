@@ -51,7 +51,8 @@ Spawn via Task tool with these `subagent_type` values:
 **Phase 4 — Execute & Verify**:
 - Centurion implements (use `isolation: "worktree"` and `model: "opus"` for 4+ files)
 - **WAIT for Centurion to complete.** Read the full result.
-- Vigil verifies → **WAIT for Vigil to complete.** Read the verdict.
+- Vigil verifies — include the full **Test Plan** section from Tribunus's plan in Vigil's prompt → **WAIT for Vigil to complete.** Read the verdict.
+- If Vigil returns VERIFIED with manual items: present manual test steps to the user as a recommendation, then mark complete.
 - If FAILED, new Centurion fixes (max 3 cycles) → if still failing, Augur diagnoses
 
 ## Worktree Merge Protocol

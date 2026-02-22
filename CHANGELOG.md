@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.4.0] — 2026-02-22
+
+### Added
+- TDD validation in the verification pipeline — Vigil now executes the test plan, not just reviews code
+- `## Test Plan` section in Tribunus plan format with Automated Tests, Manual Tests, and Test Requirements tables
+- Test Plan Execution phase in Vigil (check #2) — runs automated test commands, verifies test file creation, reviews test quality
+- `MANUAL VERIFICATION RECOMMENDED` in Vigil verdicts — non-blocking manual test recommendations surfaced to user
+- Centurion now writes test files as a deliverable during EXECUTE phase
+- `TESTS WRITTEN` and `TEST RESULTS` fields in Centurion report format
+- Legatus passes full Test Plan to Vigil and presents manual test recommendations after VERIFIED
+
+### Changed
+- Vigil checks reordered: Plan compliance → Test plan execution (new) → Code quality → Regressions
+- Vigil verdicts expanded to reference automated test results, test quality, and manual verification
+- Centurion VERIFY phase runs written tests before reporting
+- Tribunus rules expanded: test scenarios required per step, concrete CLI commands enforced
+
 ## [1.3.0] — 2026-02-22
 
 ### Added
