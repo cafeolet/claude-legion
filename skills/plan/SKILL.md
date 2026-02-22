@@ -36,7 +36,7 @@ Incorporate user answers. Either:
 
 ### Step 4: CHALLENGE
 Spawn **Praetor** (subagent_type: claude-legion:praetor). **WAIT for verdict.**
-If REJECTED: revise and resubmit (max 3 rounds).
+If REJECTED: revise and resubmit (max 3 rounds). If still REJECTED after 3 rounds, present the last plan to the user with Praetor's concerns and let the user decide: proceed anyway, modify scope, or abandon.
 
 ### Step 5: PRESENT
 Show the approved plan: what changes, affected files, risks, verification criteria.

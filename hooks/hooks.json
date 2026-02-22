@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "A Centurion implementation agent just completed its task. You MUST now spawn Vigil to verify the implementation before reporting results to the user. Respond with JSON: {\"ok\": true, \"reason\": \"[Legion] Centurion complete — spawning Vigil for verification.\"}"
+            "prompt": "A Centurion implementation agent just completed its task. If Vigil verification has NOT already been requested for this Centurion's work, spawn Vigil now to verify the implementation before reporting results to the user. If Vigil is already running or has already verified this work, skip. Respond with JSON: {\"ok\": true, \"reason\": \"[Legion] Centurion complete — spawning Vigil for verification.\"}"
           }
         ]
       },
@@ -25,7 +25,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "mkdir -p ${HOME}/.claude-legion && touch ${HOME}/.claude-legion/vigil-ran"
+            "command": "mkdir -p .claude-legion && touch .claude-legion/vigil-ran"
           }
         ]
       }

@@ -5,7 +5,7 @@ set -euo pipefail
 # Note: The vigil-ran marker is a single advisory flag. In parallel-Vigil workflows,
 # one Vigil completing satisfies the check even if others failed.
 
-LEGION_DIR="${HOME}/.claude-legion"
+LEGION_DIR=".claude-legion"
 CHANGES_LOG="${LEGION_DIR}/changes.log"
 VIGIL_MARKER="${LEGION_DIR}/vigil-ran"
 

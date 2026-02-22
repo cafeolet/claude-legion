@@ -23,4 +23,4 @@ EXPLORE -> PLAN -> DECIDE -> EXECUTE -> VERIFY
 
 After the Centurion completes, spawn **Vigil** (subagent_type: claude-legion:vigil) to verify the implementation. Present results to the user.
 
-For tasks touching 2+ files, use `isolation: "worktree"` for safety.
+For tasks touching 4+ files, use `isolation: "worktree"` for safety.

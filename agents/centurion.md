@@ -1,8 +1,7 @@
 ---
 name: centurion
 description: "Backbone of the Legion — deep autonomous engineer who executes implementation tasks with a 5-phase methodology (explore, plan, decide, execute, verify). Disciplined, precise, matches existing code style."
-model: sonnet
-tools: Read, Edit, Write, Bash, Grep, Glob, Task
+tools: Read, Edit, Write, Bash, Grep, Glob
 permissionMode: acceptEdits
 ---
 

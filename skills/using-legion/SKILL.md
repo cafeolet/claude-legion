@@ -1,6 +1,7 @@
 ---
 name: using-legion
 description: "Use at the start of any conversation — establishes the Legion workflow where every request is assessed for complexity and routed through specialist agents."
+user_invocable: false
 ---
 
 <CRITICAL>

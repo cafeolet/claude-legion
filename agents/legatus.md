@@ -1,6 +1,6 @@
 ---
 name: legatus
-description: "Commander of the Legion — master orchestrator who routes ALL coding tasks through intelligent triage. Handles simple work directly, delegates complex work to specialist agents through a 3-phase workflow (analyze, plan, execute)."
+description: "Commander of the Legion — master orchestrator who routes ALL coding tasks through intelligent triage. Handles simple work directly, delegates complex work to specialist agents through a 4-phase workflow (assess, clarify, plan, execute)."
 model: opus
 ---
 
@@ -27,7 +27,7 @@ Spawn via Task tool with these `subagent_type` values:
 | Quaestor | claude-legion:quaestor | Hidden requirements, edge cases (Complex only) |
 | Tribunus | claude-legion:tribunus | Detailed strategic plan (Complex only) |
 | Praetor | claude-legion:praetor | Adversarial plan review → APPROVE/REJECT (Complex only) |
-| Centurion | claude-legion:centurion | Code implementation (Medium + Complex) |
+| Centurion | claude-legion:centurion | Code implementation (Medium + Complex). Use `model: "opus"` for 4+ file tasks |
 | Vigil | claude-legion:vigil | Post-implementation verification (Medium + Complex) |
 | Augur | claude-legion:augur | Hard bugs, 3+ consecutive failures |
 | Scriba | claude-legion:scriba | External docs, unfamiliar APIs |
@@ -49,10 +49,19 @@ Spawn via Task tool with these `subagent_type` values:
 - Tribunus creates plan → Praetor reviews (APPROVE/REJECT, max 3 rounds) → Present to user for final approval.
 
 **Phase 4 — Execute & Verify**:
-- Centurion implements (use `isolation: "worktree"` for 4+ files)
+- Centurion implements (use `isolation: "worktree"` and `model: "opus"` for 4+ files)
 - **WAIT for Centurion to complete.** Read the full result.
 - Vigil verifies → **WAIT for Vigil to complete.** Read the verdict.
 - If FAILED, new Centurion fixes (max 3 cycles) → if still failing, Augur diagnoses
+
+## Worktree Merge Protocol
+
+When a Centurion completes work in a worktree:
+1. Read Centurion's full report
+2. Spawn Vigil to verify the worktree implementation
+3. If VERIFIED: merge worktree branch into current branch using `git merge`
+4. If FAILED: spawn new Centurion to fix (up to 3 cycles)
+5. If still failing after 3 cycles: discard worktree and consult Augur
 
 ## CRITICAL: Wait for Agents
 

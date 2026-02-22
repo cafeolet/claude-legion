@@ -3,8 +3,8 @@ set -euo pipefail
 # Claude Legion — Session Initialization
 
 # Clean up previous session markers
-LEGION_DIR="${HOME}/.claude-legion"
-[ -n "$LEGION_DIR" ] && rm -f "${LEGION_DIR}/changes.log" "${LEGION_DIR}/vigil-ran"
+LEGION_DIR=".claude-legion"
+[ -d "$LEGION_DIR" ] && rm -f "${LEGION_DIR}/changes.log" "${LEGION_DIR}/vigil-ran"
 
 cat << 'EOF'
 SessionStart:startup hook success: [Legion Activated] Legatus is online.

@@ -30,17 +30,17 @@ Claude Legion brings that principle to AI-assisted engineering. Instead of one a
 
 The result: complex tasks get the rigor they deserve — structured planning, adversarial review, parallel execution, and systematic verification — all automatically. Simple tasks still get handled directly by the commander, no overhead. The legion scales its process to match the problem.
 
-Legatus, the commander, classifies every incoming task and decides whether to handle it himself or deploy the full pipeline. When the legion engages, up to 7 specialist agents run concurrently — analyzing requirements, planning, challenging plans, implementing, and verifying — all orchestrated through a disciplined 3-phase workflow.
+Legatus, the commander, classifies every incoming task and decides whether to handle it himself or deploy the full pipeline. When the legion engages, up to 7 specialist agents run concurrently — analyzing requirements, planning, challenging plans, implementing, and verifying — all orchestrated through a disciplined 4-phase workflow.
 
 ## The Legion
 
 | Agent | Rank | Role | Model |
 |-------|------|------|-------|
-| **Legatus** | Commander | Master orchestrator — routes tasks through 3-phase workflow | Opus |
+| **Legatus** | Commander | Master orchestrator — routes tasks through 4-phase workflow | Opus |
 | **Quaestor** | Investigator | Pre-analysis — hidden requirements, edge cases, constraints | Sonnet |
 | **Tribunus** | Tribune | Strategic planner — detailed plans with dependencies and risks | Opus |
 | **Praetor** | Judge | Plan critic — adversarial review, APPROVE or REJECT | Sonnet |
-| **Centurion** | Soldier | Autonomous implementer — 5-phase engineering methodology | Sonnet / Opus |
+| **Centurion** | Soldier | Autonomous implementer — 5-phase engineering methodology | Sonnet by default, Opus for 4+ file tasks |
 | **Vigil** | Watchman | Verifier — plan compliance, tests, code quality | Sonnet |
 | **Augur** | Oracle | Deep diagnostician — hard bugs and architectural questions | Opus |
 | **Scriba** | Scribe | Documentation researcher — fast knowledge lookup | Haiku |
@@ -53,19 +53,22 @@ Legatus classifies every task and routes it through the right level of process:
   TRIVIAL  ─>  Legatus handles it directly. Done.
   SIMPLE   ─>  Legatus handles it. Optional Vigil check.
   MEDIUM   ─>  Brief plan -> Centurion builds -> Vigil verifies.
-  COMPLEX  ─>  Full 3-phase pipeline:
+  COMPLEX  ─>  Full 4-phase pipeline:
 ```
 
 ```
   Phase 1: ASSESS
-    Quaestor + Explorer + Scriba          (parallel recon)
+    Quaestor + Explore + Scriba           (parallel recon)
 
-  Phase 2: PLAN & CHALLENGE
+  Phase 2: CLARIFY
+    Legatus asks user clarifying questions (AskUserQuestion)
+
+  Phase 3: PLAN & CHALLENGE
     Tribunus creates plan
     Praetor challenges it                 (APPROVE / REJECT, max 3 rounds)
     User approves
 
-  Phase 3: EXECUTE & VERIFY
+  Phase 4: EXECUTE & VERIFY
     Centurion implements                  (parallel instances for independent work)
     Vigil verifies                        (VERIFIED / FAILED, max 3 fix cycles)
     If stuck -> Augur diagnoses
@@ -216,6 +219,15 @@ Claude Code's built-in `Explore` subagent type is also used for codebase mapping
 ### Rollback Safety
 
 For complex multi-file tasks, Centurion uses `isolation: "worktree"` to work in a temporary git worktree. If verification fails and fixes can't resolve it, the worktree is discarded — no damage to the main branch.
+
+### Session Markers
+
+Legion uses a per-project `.claude-legion/` directory to store session markers (change logs, verification flags). This directory is created automatically in the current working directory and should be added to your `.gitignore`:
+
+```
+# Claude Legion session markers
+.claude-legion/
+```
 
 ## For AI Assistants
 

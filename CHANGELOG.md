@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.2.0] — 2026-02-22
+
+### Fixed
+- Session-init guard: `[ -n "$LEGION_DIR" ]` changed to `[ -d "$LEGION_DIR" ]` for correct directory check
+- Removed `Task` tool from Centurion (subagents cannot spawn subagents)
+- Removed `permissionMode: acceptEdits` from Vigil (read-only agent)
+- Moved session markers from global `~/.claude-legion` to per-project `.claude-legion/`
+- Fixed "3-phase" references to "4-phase" across all agents, skills, and README
+- Fixed phase names in legion skill description to "assess, clarify, plan & challenge, execute & verify"
+- Normalized worktree isolation threshold from 2+ files to 4+ files
+- Fixed SubagentStop double-Vigil by adding idempotency check to Centurion hook prompt
+- Removed hardcoded `model: sonnet` from Centurion — model is now specified by Legatus at call-site
+
+### Added
+- `user_invocable: false` to using-legion skill
+- Centurion model routing: Legatus uses `model: "opus"` for 4+ file tasks
+- Worktree Merge Protocol section in Legatus agent
+- Plan REJECT escalation: after 3 rounds, present to user with Praetor's concerns
+- "Approve with changes" handling in legion skill Phase 3
+- Session Markers subsection and `.claude-legion/` gitignore recommendation in README
+
+### Changed
+- Legatus description updated to "4-phase workflow (assess, clarify, plan, execute)"
+- v1.0.0 changelog entry corrected: "Intent Gate" replaced with "Assess"
+
 ## [1.1.2] — 2026-02-22
 
 ### Fixed
@@ -39,7 +64,7 @@
 - 8 agents: Legatus, Quaestor, Tribunus, Praetor, Centurion, Vigil, Augur, Scriba
 - 6 skills: legion, plan, deep-work, consult, research, verify
 - Hooks: SessionStart, SubagentStop, PostToolUse, Stop
-- 3-phase orchestration pipeline: Intent Gate → Plan & Challenge → Execute & Verify
+- 4-phase orchestration pipeline: Assess → Clarify → Plan & Challenge → Execute & Verify
 - `scripts/stop-check.sh` — deterministic stop-time verification reminder
 - SubagentStop vigil hook — creates marker file so stop-check knows Vigil ran
 - Session cleanup of `changes.log` and `vigil-ran` markers on SessionStart

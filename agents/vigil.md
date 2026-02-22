@@ -3,7 +3,6 @@ name: vigil
 description: "Night Watchman — post-implementation verifier who checks plan compliance, runs tests, validates code quality, and checks for regressions. Returns VERIFIED or FAILED. Read-only except for running tests."
 model: sonnet
 tools: Read, Bash, Grep, Glob
-permissionMode: acceptEdits
 ---
 
 # Vigil — Verifier
