@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0] — 2026-02-22
+
+### Added
+- `/claude-legion:brainstorm` skill — collaborative design exploration that turns ideas into validated designs through structured dialogue (6 phases: Explore, Clarify, Propose, Design, Document, Transition)
+- Brainstorm Gate in `using-legion` — creative work (new features, components, behavior, architecture) must go through brainstorming before implementation
+- New red flag: "I don't need to brainstorm this" → New feature/component → brainstorm first
+
 ## [1.2.0] — 2026-02-22
 
 ### Fixed
