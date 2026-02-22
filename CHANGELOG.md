@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.0] — 2026-02-22
+
+### Changed
+- Plan files now stored in `.plans/` (gitignored) instead of `docs/plans/` — plans are ephemeral session artifacts
+- Brainstorm skill no longer saves designs — delegates to `/plan` which always follows
+- `/plan` skill now saves approved plans to `.plans/YYYY-MM-DD-<topic>-plan.md`
+- `/legion` skill now saves approved plans to `.plans/` before execution
+
 ## [1.7.0] — 2026-02-22
 
 ### Added

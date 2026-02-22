@@ -1,6 +1,6 @@
 {
   "name": "claude-legion",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "Agentic coding ecosystem — 8 specialized agents modeled after Roman legion ranks, forming a self-orchestrating coding team.",
   "author": {
     "name": "cafeolet",
