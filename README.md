@@ -152,6 +152,7 @@ When the plugin is loaded, Legatus becomes the main thread agent. All requests g
 | `/claude-legion:legion` | Full orchestration pipeline | `/claude-legion:legion Add OAuth2 authentication` |
 | `/claude-legion:plan` | Planning only — no execution | `/claude-legion:plan Refactor the database layer` |
 | `/claude-legion:deep-work` | Direct implementation via Centurion | `/claude-legion:deep-work Fix the pagination bug` |
+| `/claude-legion:brainstorm` | Creative design exploration | `/claude-legion:brainstorm How should we structure the plugin system?` |
 | `/claude-legion:consult` | Deep analysis via Augur | `/claude-legion:consult Why do API tests fail intermittently?` |
 | `/claude-legion:research` | Documentation lookup via Scriba | `/claude-legion:research What React Router version are we using?` |
 | `/claude-legion:verify` | Verification pass via Vigil | `/claude-legion:verify Check all changes since last commit` |
@@ -266,7 +267,7 @@ Then restart Claude Code. You should see `[Legion Activated] Legatus is online.`
 ### What Gets Installed
 
 - **8 agents** in `agents/` — each with specialized role, model, and behavioral prompt
-- **6 slash commands** — `/claude-legion:legion`, `/claude-legion:plan`, `/claude-legion:deep-work`, `/claude-legion:consult`, `/claude-legion:research`, `/claude-legion:verify`
+- **7 slash commands** — `/claude-legion:legion`, `/claude-legion:plan`, `/claude-legion:deep-work`, `/claude-legion:brainstorm`, `/claude-legion:consult`, `/claude-legion:research`, `/claude-legion:verify`
 - **4 hooks** — SessionStart (activation), SubagentStop (auto-verification trigger), PostToolUse (change tracking), Stop (verification reminder)
 - **3 scripts** in `scripts/` — session initialization, change tracking, stop-time verification check
 

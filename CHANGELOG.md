@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.6.0] — 2026-02-22
+
+### Changed
+- Legatus agent prompt now contains full orchestration protocol — brainstorm gate, workflow, and red flags baked into `agents/legatus.md`
+- Session init trimmed to status message + cleanup only — behavioral instructions consolidated in agent prompt
+
+### Removed
+- `using-legion` skill — orchestration protocol merged directly into Legatus agent prompt, eliminating the need for skill injection
+
 ## [1.5.0] — 2026-02-22
 
 ### Fixed
