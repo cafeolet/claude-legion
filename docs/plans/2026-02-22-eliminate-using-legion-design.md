@@ -2,7 +2,7 @@
 
 **Date:** 2026-02-22
 **Version:** 1.6.0
-**Status:** Approved
+**Status:** Superseded by restore-using-legion-design.md (v1.7.0)
 
 ## Problem
 

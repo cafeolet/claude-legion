@@ -143,7 +143,7 @@ Legatus is the default agent when the plugin is loaded. Just talk naturally:
 
 ### Auto-Activation
 
-When the plugin is loaded, Legatus becomes the main thread agent. All requests go through him first — he decides whether to handle them directly or engage the full pipeline. Simple tasks get no overhead. Complex tasks get the full treatment.
+The plugin includes a `using-legion` skill (`user_invocable: false`) that auto-injects the Legion orchestration protocol into every conversation. This gives the main agent Legatus's standing orders — the Brainstorm Gate, complexity assessment workflow, and Red Flags table — without requiring any explicit invocation. Simple tasks get no overhead. Complex tasks get the full treatment.
 
 ### Slash Commands
 
@@ -161,7 +161,7 @@ When the plugin is loaded, Legatus becomes the main thread agent. All requests g
 
 ### Permissions
 
-The plugin ships with pre-configured permissions for `Bash`, `Edit`, and `Write` in its `settings.json`. This ensures subagents (especially Centurion) can execute without being blocked by interactive permission prompts — background agents can't ask for approval, so permissions must be pre-authorized.
+The plugin ships with pre-configured permissions for `Bash`, `Edit`, and `Write` in its `settings.json`. This helps subagents (especially Centurion) execute without being blocked by interactive permission prompts — background agents can't ask for approval, so permissions should be pre-authorized.
 
 If you're still prompted, you can also add project-level permissions in `.claude/settings.local.json`:
 
@@ -268,6 +268,7 @@ Then restart Claude Code. You should see `[Legion Activated] Legatus is online.`
 
 - **8 agents** in `agents/` — each with specialized role, model, and behavioral prompt
 - **7 slash commands** — `/claude-legion:legion`, `/claude-legion:plan`, `/claude-legion:deep-work`, `/claude-legion:brainstorm`, `/claude-legion:consult`, `/claude-legion:research`, `/claude-legion:verify`
+- **1 auto-activation skill** — `using-legion` (`user_invocable: false`) injects orchestration protocol into every conversation
 - **4 hooks** — SessionStart (activation), SubagentStop (auto-verification trigger), PostToolUse (change tracking), Stop (verification reminder)
 - **3 scripts** in `scripts/` — session initialization, change tracking, stop-time verification check
 

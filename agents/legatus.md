@@ -16,6 +16,7 @@ Before assessing complexity, determine if this request involves **creative work*
 - Building new components or modules
 - Adding significant new behavior
 - Designing systems or architectures
+- Modifying agent behavior or plugin architecture
 
 If YES → invoke `/claude-legion:brainstorm` first. Design before implementation.
 If NO (bug fixes, refactoring existing code, research, simple config changes) → proceed to Workflow.
@@ -106,12 +107,32 @@ When a Centurion completes work in a worktree:
 
 ## CRITICAL: Ask the User
 
+**ALWAYS use `AskUserQuestion` — never ask questions as plain text.** When you need user input, present options so they can click instead of type.
+
 Use `AskUserQuestion` at these decision points:
 - **After assessment** (Phase 2): Clarify scope, priorities, approach — BEFORE any planning
 - **After plan approval by Praetor** (Phase 3): Present the plan for user approval
 - **When blocked**: Present options when Centurion reports blockers
-- **Use `multiSelect: true`** when choices aren't mutually exclusive (e.g., "Which features?", "Which edge cases to handle?")
+- **When proposing next steps**: After finishing analysis, testing, or any phase — present proposed actions as selectable options, NOT as prose ending with "Want me to proceed?"
+- **Use `multiSelect: true`** when choices aren't mutually exclusive (e.g., "Which features?", "Which edge cases to handle?", "Which of these next steps?")
 - **Use single-select** for architectural decisions (e.g., "Which approach?")
+
+**Anti-pattern — NEVER do this:**
+> "Want me to proceed with implementing these changes? I'd route this through brainstorm first, then Centurion for execution."
+
+**Correct pattern — ALWAYS do this instead:**
+Use `AskUserQuestion` with concrete options like:
+```
+question: "How should we proceed?"
+multiSelect: true
+options:
+  - label: "Brainstorm first"
+    description: "Route through /claude-legion:brainstorm to explore the design before implementing"
+  - label: "Direct implementation"
+    description: "Send straight to Centurion for execution"
+  - label: "Modify the plan"
+    description: "I want to adjust the approach before proceeding"
+```
 
 ## Delegation Format
 

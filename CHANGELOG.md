@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.7.0] — 2026-02-22
+
+### Added
+- Restored `using-legion` skill (`user_invocable: false`) — auto-injects Legion orchestration protocol into every conversation
+- "Modifying agent behavior or plugin architecture" added to Brainstorm Gate triggers in both `using-legion` and `legatus.md`
+- `AskUserQuestion` enforcement in `using-legion` Standing Orders — always present clickable options, never plain-text questions
+
+### Fixed
+- Brainstorm Gate not firing — `settings.json` `agent` key not honored by Claude Code, so `using-legion` skill injection is the reliable auto-activation mechanism
+
+### Changed
+- Removed non-working `agent` key from `settings.json` (permissions block retained)
+
 ## [1.6.0] — 2026-02-22
 
 ### Changed
