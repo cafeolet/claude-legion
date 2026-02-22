@@ -49,11 +49,7 @@ Cover as applicable: architecture, components, data flow, error handling, testin
 YAGNI ruthlessly — cut anything that isn't clearly needed.
 Revise sections based on feedback.
 
-### Phase 5: DOCUMENT
-Save the validated design to `docs/plans/YYYY-MM-DD-<topic>-design.md`. Create `docs/plans/` if it doesn't exist.
-Do NOT auto-commit — the user will commit when ready.
-
-### Phase 6: TRANSITION
+### Phase 5: TRANSITION
 Invoke `/claude-legion:plan` to create a detailed implementation plan from the design.
 This is the ONLY terminal action — do NOT invoke any other implementation skill.
 

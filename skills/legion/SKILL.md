@@ -40,9 +40,10 @@ Incorporate user answers, then:
 2. **WAIT for plan.** Then spawn **Praetor** (subagent_type: claude-legion:praetor) to review
 3. **WAIT for Praetor.** If REJECTED, revise and resubmit (max 3 rounds). If still REJECTED after 3 rounds, present the last plan to the user with Praetor's concerns and let the user decide: proceed anyway, modify scope, or abandon.
 4. Present approved plan to user with `AskUserQuestion`: "Approve", "Approve with changes", "Reject"
-   - **Approve**: Proceed to Phase 4
+   - **Approve**: Save plan, then proceed to Phase 4
    - **Approve with changes**: Ask user to specify changes via `AskUserQuestion`, incorporate them, re-run Praetor if structural changes, then re-present to user
    - **Reject**: Ask user for direction — modify scope, different approach, or abandon
+5. Save approved plan to `.plans/YYYY-MM-DD-<topic>-plan.md`. Create `.plans/` if it doesn't exist.
 
 ### Phase 4: EXECUTE & VERIFY
 1. Spawn **Centurion** (subagent_type: claude-legion:centurion). **WAIT for completion. Read full result.**

@@ -41,4 +41,8 @@ If REJECTED: revise and resubmit (max 3 rounds). If still REJECTED after 3 round
 ### Step 5: PRESENT
 Show the approved plan: what changes, affected files, risks, verification criteria.
 
+### Step 6: SAVE
+Save the approved plan to `.plans/YYYY-MM-DD-<topic>-plan.md`. Create `.plans/` if it doesn't exist.
+Do NOT auto-commit — the user will commit when ready.
+
 Do NOT proceed to execution. The user wants the plan only.
