@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.1] — 2026-02-22
+
+### Fixed
+- Legatus not auto-activating on session start — the `using-legion` skill had no injection mechanism, so routing instructions were never loaded into context. Added a `type: "prompt"` SessionStart hook that injects Legatus routing instructions directly into every conversation.
+
 ## [1.1.0] — 2026-02-22
 
 ### Added
