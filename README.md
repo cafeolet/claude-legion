@@ -157,7 +157,9 @@ When the plugin is loaded, Legatus becomes the main thread agent. All requests g
 
 ### Permissions
 
-For uninterrupted subagent execution, add project-level permissions in `.claude/settings.local.json`:
+The plugin ships with pre-configured permissions for `Bash`, `Edit`, and `Write` in its `settings.json`. This ensures subagents (especially Centurion) can execute without being blocked by interactive permission prompts — background agents can't ask for approval, so permissions must be pre-authorized.
+
+If you're still prompted, you can also add project-level permissions in `.claude/settings.local.json`:
 
 ```json
 {
@@ -170,8 +172,6 @@ For uninterrupted subagent execution, add project-level permissions in `.claude/
   }
 }
 ```
-
-This ensures subagents can execute without being blocked by interactive permission prompts.
 
 ### Agent Customization
 

@@ -14,13 +14,9 @@ $ARGUMENTS
 
 ## Instructions
 
-Spawn a **Scriba** agent for documentation research:
-
-1. Read the Scriba agent prompt from `${CLAUDE_PLUGIN_ROOT}/agents/scriba.md`
-2. Spawn the agent (subagent_type: general-purpose, model: haiku) with:
-   - The full Scriba system prompt
-   - The research topic/question
-   - The project's root directory for context
+Spawn a **Scriba** (subagent_type: claude-legion:scriba) with:
+- The research topic/question
+- The project's root directory for context
 
 The Scriba will:
 - Search project documentation

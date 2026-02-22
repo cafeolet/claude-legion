@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.1.0] — 2026-02-22
+
+### Added
+- `using-legion` skill — non-user-invocable skill that auto-activates Legatus on every conversation (Superpowers pattern)
+- Phase 2 "Clarify with User" — Legatus now asks clarifying questions with `AskUserQuestion` (including `multiSelect`) BEFORE planning
+- Pre-authorized permissions in `settings.json` — Bash, Edit, Write shipped with the plugin so background agents don't get blocked
+- `tools` and `permissionMode` frontmatter on Centurion and Vigil agents
+- Rule 9 on Legatus: never bypass agents due to permission errors — guide the user instead
+
+### Changed
+- All 8 agents rewritten for token efficiency — ~60% size reduction (780 lines removed, 278 added)
+- All 6 skills now use proper `subagent_type: claude-legion:*` instead of `general-purpose` (agents load automatically, no manual file reads)
+- Legatus and all pipeline skills enforce WAIT for sub-agents before proceeding
+- Session init script simplified — cleanup + status message only (using-legion skill handles activation)
+- README permissions section updated — explains permissions are now automatic
+
+### Fixed
+- Centurion blocked on permissions in new projects — background agents can't prompt interactively, now pre-authorized via plugin settings
+- Legatus racing ahead before sub-agents complete — explicit WAIT instructions added
+- Plan reviews happening after final decisions — Praetor now reviews before user sees the plan
+- Legatus never asking multiSelect questions — enforced in Phase 2 workflow
+- Skills reading agent .md files unnecessarily — proper subagent_types eliminate redundant file reads
+
 ## [1.0.0] — 2026-02-21
 
 ### Added

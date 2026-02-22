@@ -14,13 +14,9 @@ $ARGUMENTS
 
 ## Instructions
 
-Spawn an **Augur** agent for deep consultation:
-
-1. Read the Augur agent prompt from `${CLAUDE_PLUGIN_ROOT}/agents/augur.md`
-2. Spawn the agent (subagent_type: general-purpose, model: opus) with:
-   - The full Augur system prompt
-   - The user's question
-   - Any relevant context (error messages, file paths, prior attempts)
+Spawn an **Augur** (subagent_type: claude-legion:augur) with:
+- The user's question
+- Any relevant context (error messages, file paths, prior attempts)
 
 The Augur will:
 - Form ranked hypotheses

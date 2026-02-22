@@ -1,3 +1,10 @@
 {
-  "agent": "legatus"
+  "agent": "legatus",
+  "permissions": {
+    "allow": [
+      "Bash(bash:*)",
+      "Edit",
+      "Write"
+    ]
+  }
 }

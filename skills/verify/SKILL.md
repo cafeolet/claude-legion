@@ -14,13 +14,9 @@ $ARGUMENTS
 
 ## Instructions
 
-Spawn a **Vigil** agent for verification:
-
-1. Read the Vigil agent prompt from `${CLAUDE_PLUGIN_ROOT}/agents/vigil.md`
-2. Spawn the agent (subagent_type: general-purpose, model: sonnet) with:
-   - The full Vigil system prompt
-   - The user's scope (if specified) or instruction to check all recent changes
-   - Any relevant plan or task context
+Spawn a **Vigil** (subagent_type: claude-legion:vigil) with:
+- The user's scope (if specified) or instruction to check all recent changes
+- Any relevant plan or task context
 
 The Vigil will:
 - Check code quality of all changed files
