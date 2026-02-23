@@ -4,7 +4,7 @@ set -euo pipefail
 # Logs modified files for Vigil's plan compliance check
 # Called asynchronously on Write/Edit tool use
 
-LEGION_DIR=".claude-legion"
+LEGION_DIR=".legion"
 CHANGES_LOG="${LEGION_DIR}/changes.log"
 
 # Ensure directory exists

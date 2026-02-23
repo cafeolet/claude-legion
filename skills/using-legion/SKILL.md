@@ -1,7 +1,7 @@
 ---
 name: using-legion
 description: "Establishes the Legion orchestration protocol — every request is assessed for complexity and routed through specialist agents."
-user_invocable: false
+user_invocable: true
 ---
 
 <CRITICAL>

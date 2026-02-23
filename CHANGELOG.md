@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.1] — 2026-02-23
+
+### Fixed
+- Unified session directory from `.claude-legion/` to `.legion/` across all scripts, hooks, and gitignore
+- README accuracy: removed outdated "auto-activation" and "default agent" claims — Legatus now activated via `/claude-legion:using-legion`
+- README accuracy: corrected Centurion model description (set dynamically by Legatus, not static default)
+- README accuracy: corrected permissions section (removed false claim that `settings.json` ships with plugin)
+- README accuracy: updated "What Gets Installed" to reflect hooks in `hooks/hooks.json` and 8 slash commands
+- Added `MUST NOT DO` field to Legatus delegation format template (anti-pattern table referenced it but it was missing)
+- Added `/claude-legion:brainstorm` to session-init.sh status message (was missing from skills list)
+
+### Changed
+- `using-legion` skill set to `user_invocable: true` — users activate with `/claude-legion:using-legion` at conversation start
+- README Usage section rewritten: `/claude-legion:using-legion` is now the documented entry point
+- Session Data section (formerly "Session Markers") updated to describe `.legion/` directory including scrolls and plans
+
 ## [2.0.0] — 2026-02-22
 
 ### Added — Prompt Fortress Upgrade

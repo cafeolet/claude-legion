@@ -40,7 +40,7 @@ Legatus, the commander, classifies every incoming task and decides whether to ha
 | **Quaestor** | Investigator | Pre-analysis — hidden requirements, edge cases, constraints | Sonnet |
 | **Tribunus** | Tribune | Strategic planner — detailed plans with dependencies and risks | Opus |
 | **Praetor** | Judge | Plan critic — adversarial review, APPROVE or REJECT | Sonnet |
-| **Centurion** | Soldier | Autonomous implementer — 5-phase engineering methodology | Sonnet by default, Opus for 4+ file tasks |
+| **Centurion** | Soldier | Autonomous implementer — 5-phase engineering methodology | Sonnet or Opus (set by Legatus based on task complexity) |
 | **Vigil** | Watchman | Verifier — plan compliance, tests, code quality | Sonnet |
 | **Augur** | Oracle | Deep diagnostician — hard bugs and architectural questions | Opus |
 | **Scriba** | Scribe | Documentation researcher — fast knowledge lookup | Haiku |
@@ -99,7 +99,7 @@ claude plugin marketplace add cafeolet/claude-legion
 claude plugin install claude-legion@claude-legion
 ```
 
-Restart Claude Code. You should see `[Legion Activated] Legatus is online.`
+Restart Claude Code. The plugin is now installed. To activate the Legion protocol, run `/claude-legion:using-legion` at the start of a conversation.
 
 ### Or clone for development
 
@@ -119,9 +119,8 @@ claude --plugin-dir ~/code/claude-legion
 /agents
 # -> legatus, centurion, tribunus, quaestor, praetor, augur, vigil, scriba
 
-# Check skills are available
-/help
-# -> /claude-legion:legion, /claude-legion:plan, etc.
+# Activate the Legion
+/claude-legion:using-legion
 ```
 
 ### Recommended: Add Context7
@@ -133,22 +132,27 @@ claude mcp add context7 -- npx -y @upstash/context7-mcp@latest
 
 ## Usage
 
-### Natural Language
+### Activate the Legion
 
-Legatus is the default agent when the plugin is loaded. Just talk naturally:
+Start each conversation by invoking the orchestration protocol:
+
+```
+/claude-legion:using-legion
+```
+
+This transforms Claude into Legatus, the Legion commander. From that point on, every request is assessed for complexity and routed through the appropriate specialist agents. Simple tasks get handled directly. Complex tasks get the full pipeline — investigation, planning, adversarial review, implementation, and verification.
+
+Once activated, just talk naturally:
 
 - *"Add a logout button to the header"* — Legatus assesses complexity and routes accordingly
 - *"Something is broken in the auth flow"* — Legatus may engage Augur for diagnosis
 - *"What does the config in `app.yaml` do?"* — Legatus may engage Scriba for research
 
-### Auto-Activation
-
-The plugin includes a `using-legion` skill (`user_invocable: false`) that auto-injects the Legion orchestration protocol into every conversation. This gives the main agent Legatus's standing orders — the Brainstorm Gate, complexity assessment workflow, and Red Flags table — without requiring any explicit invocation. Simple tasks get no overhead. Complex tasks get the full treatment.
-
 ### Slash Commands
 
 | Command | What it does | Example |
 |---------|-------------|---------|
+| `/claude-legion:using-legion` | **Activate the Legion** — start here | `/claude-legion:using-legion` |
 | `/claude-legion:legion` | Full orchestration pipeline | `/claude-legion:legion Add OAuth2 authentication` |
 | `/claude-legion:plan` | Planning only — no execution | `/claude-legion:plan Refactor the database layer` |
 | `/claude-legion:deep-work` | Direct implementation via Centurion | `/claude-legion:deep-work Fix the pagination bug` |
@@ -161,9 +165,9 @@ The plugin includes a `using-legion` skill (`user_invocable: false`) that auto-i
 
 ### Permissions
 
-The plugin ships with pre-configured permissions for `Bash`, `Edit`, and `Write` in its `settings.json`. This helps subagents (especially Centurion) execute without being blocked by interactive permission prompts — background agents can't ask for approval, so permissions should be pre-authorized.
+Subagents (especially Centurion) need `Bash`, `Edit`, and `Write` permissions to execute without being blocked by interactive prompts — background agents can't ask for approval.
 
-If you're still prompted, you can also add project-level permissions in `.claude/settings.local.json`:
+Add project-level permissions in `.claude/settings.local.json`:
 
 ```json
 {
@@ -221,13 +225,13 @@ Claude Code's built-in `Explore` subagent type is also used for codebase mapping
 
 For complex multi-file tasks, Centurion uses `isolation: "worktree"` to work in a temporary git worktree. If verification fails and fixes can't resolve it, the worktree is discarded — no damage to the main branch.
 
-### Session Markers
+### Session Data
 
-Legion uses a per-project `.claude-legion/` directory to store session markers (change logs, verification flags). This directory is created automatically in the current working directory and should be added to your `.gitignore`:
+Legion uses a per-project `.legion/` directory to store session data — change logs, verification flags, scrolls (agent learnings), and plans. This directory is created automatically and should be added to your `.gitignore`:
 
 ```
-# Claude Legion session markers
-.claude-legion/
+# Claude Legion session data
+.legion/
 ```
 
 ## For AI Assistants
@@ -248,7 +252,7 @@ claude plugin marketplace add cafeolet/claude-legion
 claude plugin install claude-legion@claude-legion
 ```
 
-Then restart Claude Code. You should see `[Legion Activated] Legatus is online.` on session start.
+Then restart Claude Code. To activate the Legion protocol, run `/claude-legion:using-legion` at the start of a conversation.
 
 ### Step-by-Step
 
@@ -263,13 +267,13 @@ Then restart Claude Code. You should see `[Legion Activated] Legatus is online.`
    ```
 4. **Restart Claude Code** to load the plugin.
 5. **Verify** — run `/agents` in a Claude Code session. You should see all 8 agents: `legatus`, `quaestor`, `tribunus`, `praetor`, `centurion`, `vigil`, `augur`, `scriba`.
+6. **Activate** — run `/claude-legion:using-legion` to engage the Legion orchestration protocol.
 
 ### What Gets Installed
 
 - **8 agents** in `agents/` — each with specialized role, model, and behavioral prompt
-- **7 slash commands** — `/claude-legion:legion`, `/claude-legion:plan`, `/claude-legion:deep-work`, `/claude-legion:brainstorm`, `/claude-legion:consult`, `/claude-legion:research`, `/claude-legion:verify`
-- **1 auto-activation skill** — `using-legion` (`user_invocable: false`) injects orchestration protocol into every conversation
-- **4 hooks** — SessionStart (activation), SubagentStop (auto-verification trigger), PostToolUse (change tracking), Stop (verification reminder)
+- **8 slash commands** — `/claude-legion:using-legion` (activate the Legion), `/claude-legion:legion`, `/claude-legion:plan`, `/claude-legion:deep-work`, `/claude-legion:brainstorm`, `/claude-legion:consult`, `/claude-legion:research`, `/claude-legion:verify`
+- **4 hooks** in `hooks/hooks.json` — SessionStart (activation message), SubagentStop (auto-triggers Vigil after Centurion), PostToolUse (change tracking on Write/Edit), Stop (unverified changes warning)
 - **3 scripts** in `scripts/` — session initialization, change tracking, stop-time verification check
 
 ### Optional: Add Context7 MCP Server
@@ -298,7 +302,7 @@ Yes. Legatus is aware of all installed plugins and can leverage their skills, ag
 Use the `--agent` flag (e.g., `claude --agent centurion`) or the `/agents` command in-session. You can also use the direct slash commands.
 
 **What models are used?**
-Legatus, Tribunus, and Augur use Opus for strategic thinking. Quaestor, Praetor, and Vigil use Sonnet for fast execution. Centurion uses Sonnet for medium tasks and Opus for complex tasks (4+ files, architectural impact). Scriba uses Haiku for quick lookups.
+Legatus, Tribunus, and Augur use Opus for strategic thinking. Quaestor, Praetor, and Vigil use Sonnet for fast execution. Centurion's model is set by Legatus based on task complexity — Sonnet for medium tasks, Opus for complex ones (4+ files, architectural impact). Scriba uses Haiku for quick lookups.
 
 **Is Context7 required?**
 No. Context7 enhances Scriba's documentation lookups but the plugin works without it.

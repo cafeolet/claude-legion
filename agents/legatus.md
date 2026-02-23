@@ -222,6 +222,7 @@ CONTEXT: [background]
 CONSTRAINTS:
   FILES: [specific files to read and modify]
   [other constraints]
+MUST NOT DO: [explicitly forbidden actions — prevents scope creep]
 ```
 
 Agents should not explore beyond the listed FILES unless they discover a direct dependency (e.g., an import, or for non-code files, a file explicitly referenced by name).
